@@ -1,19 +1,26 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: prefer_typing_uninitialized_variables, no_logic_in_create_state
+
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Color.red,
+        primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
@@ -21,6 +28,8 @@ class MyApp extends StatelessWidget {
 enum ImageSourceType { gallery, camera }
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   void _handleURLButtonPress(BuildContext context, var type) {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => ImageFromGalleryEx(type)));
@@ -30,16 +39,17 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Image Picker Example"),
+          title: const Text("Image Picker Example"),
         ),
         body: Center(
           child: Column(
             children: [
               MaterialButton(
                 color: Colors.blue,
+                // ignore: prefer_const_constructors
                 child: Text(
                   "Pick Image from Gallery",
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white70, fontWeight: FontWeight.bold),
                 ),
                 onPressed: () {
@@ -48,7 +58,7 @@ class HomePage extends StatelessWidget {
               ),
               MaterialButton(
                 color: Colors.blue,
-                child: Text(
+                child: const Text(
                   "Pick Image from Camera",
                   style: TextStyle(
                       color: Colors.white70, fontWeight: FontWeight.bold),
@@ -65,9 +75,10 @@ class HomePage extends StatelessWidget {
 
 class ImageFromGalleryEx extends StatefulWidget {
   final type;
-  ImageFromGalleryEx(this.type);
+  const ImageFromGalleryEx(this.type, {super.key});
 
   @override
+  // ignore: unnecessary_this
   ImageFromGalleryExState createState() => ImageFromGalleryExState(this.type);
 }
 
@@ -81,6 +92,7 @@ class ImageFromGalleryExState extends State<ImageFromGalleryEx> {
   @override
   void initState() {
     super.initState();
+    // ignore: unnecessary_new
     imagePicker = new ImagePicker();
   }
 
@@ -93,7 +105,7 @@ class ImageFromGalleryExState extends State<ImageFromGalleryEx> {
               : "Image from Gallery")),
       body: Column(
         children: <Widget>[
-          SizedBox(
+          const SizedBox(
             height: 52,
           ),
           Center(
